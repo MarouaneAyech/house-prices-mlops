@@ -1,0 +1,4 @@
+[core]
+    remote = dvc_storage
+['remote "dvc_storage"']
+    url = C:\Users\aykad\Desktop\mlops_module\house-prices-mlops\dvc_storage

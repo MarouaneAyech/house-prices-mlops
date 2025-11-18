@@ -8,8 +8,12 @@ __pycache__/
 *.pyo
 
 # Données et modèles
-data/
+data/**/*.csv
 models/
 
 # Notebooks checkpoints
 *.ipynb_checkpoints/
+
+# dvc
+.dvc/
+dvc_storage/
