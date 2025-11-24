@@ -1,4 +1,5 @@
 [core]
     remote = dvc_storage
 ['remote "dvc_storage"']
-    url = C:\Users\aykad\Desktop\mlops_module\house-prices-mlops\dvc_storage
+    url = gdrive://1cRt4q_ePqDslqDW4JIzqyzaBrcD5noZt
+    gdrive_use_service_account = false
