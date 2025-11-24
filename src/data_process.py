@@ -9,8 +9,11 @@ def prepare_data(input_path="data/train.csv", output_dir="data/processed"):
     features=df.describe(include=['number']).columns
     df = df[features].dropna()
 
-    X = df.drop("SalePrice", axis=1)
+    # Keep Only numeric features most correlated with the target
+    # X = df.drop("SalePrice", axis=1)
     y = df["SalePrice"]
+    features_sorted=df.corr().iloc[:,-1].abs().sort_values()[::-1][1:]
+    X=df.loc[:,features_sorted[features_sorted>0.5].index]
     
     y_binned = pd.qcut(y, q=10, labels=False, duplicates='drop')
     
