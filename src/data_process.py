@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import os
 
-def prepare_data(input_path="data/train.csv", output_dir="data/processed"):
+def prepare_data(input_path="data/raw/data.csv", output_dir="data/processed"):
     os.makedirs(output_dir, exist_ok=True)
     
     df = pd.read_csv(input_path)

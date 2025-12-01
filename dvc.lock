@@ -1,0 +1,49 @@
+schema: '2.0'
+stages:
+  process_data:
+    cmd: python src/data_process.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 8d66fbf4929bbcf6cad395a509b9c2eb.dir
+      size: 460676
+      nfiles: 1
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 42c0e0a09b4bd53400357f45c9fea3b2.dir
+      size: 58516
+      nfiles: 4
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: 42c0e0a09b4bd53400357f45c9fea3b2.dir
+      size: 58516
+      nfiles: 4
+    outs:
+    - path: models
+      hash: md5
+      md5: 3a765f47a2078ef11c8d26a7be7d6fbc.dir
+      size: 859
+      nfiles: 1
+  eval:
+    cmd: python src/eval.py
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: 42c0e0a09b4bd53400357f45c9fea3b2.dir
+      size: 58516
+      nfiles: 4
+    - path: models
+      hash: md5
+      md5: 3a765f47a2078ef11c8d26a7be7d6fbc.dir
+      size: 859
+      nfiles: 1
+    outs:
+    - path: metrics
+      hash: md5
+      md5: 387b050ac7e0b01f22857df5f9fa2f1b.dir
+      size: 76
+      nfiles: 1

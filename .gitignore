@@ -7,9 +7,10 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Données et modèles
-data/**/*.csv
+# Données , modèles et metrics
+data/
 models/
+metrics/
 
 # Notebooks checkpoints
 *.ipynb_checkpoints/
@@ -17,6 +18,3 @@ models/
 # dvc
 .dvc/
 dvc_storage/
-
-# mlflow
-mlruns/
