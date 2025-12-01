@@ -17,6 +17,3 @@ models/
 # dvc
 .dvc/
 dvc_storage/
-
-# mlflow
-mlruns/
