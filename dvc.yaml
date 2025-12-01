@@ -1,0 +1,20 @@
+stages:
+  process_data:
+    cmd: python src/data_process.py
+    deps:
+    - data/raw
+    outs:
+    - data/processed
+  train:
+    cmd: python src/train.py
+    deps:
+    - data/processed
+    outs:
+    - models
+  eval:
+    cmd: python src/eval.py
+    deps:
+    - data/processed
+    - models
+    outs:
+    - metrics
