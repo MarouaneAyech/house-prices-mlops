@@ -1,0 +1,32 @@
+name: DVC Repro Minimal
+
+on: [push]
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupérer le code
+      - uses: actions/checkout@v3
+
+      # 2. Installer Python
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+
+      # 3. Installer les dépendances (dont dvc et dvc-s3)
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 4. Récupérer les données & Lancer le pipeline
+      - name: Run DVC
+        env:
+          # DVC utilise ces variables automatiquement pour l'auth DAGsHub/S3
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_EC2_METADATA_DISABLED: true 
+        run: |
+          dvc pull     # Télécharge les données brutes
+          dvc repro    # Exécute le pipeline (train -> eval)

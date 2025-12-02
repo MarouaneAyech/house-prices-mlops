@@ -4,4 +4,4 @@ matplotlib
 seaborn
 scikit-learn
 dvc
-dvc-gdrive
+dvc-s3

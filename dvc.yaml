@@ -10,11 +10,12 @@ stages:
     deps:
     - data/processed
     outs:
-    - models
+    - models/model.pkl
   eval:
     cmd: python src/eval.py
     deps:
     - data/processed
-    - models
-    outs:
-    - metrics
+    - models/model.pkl
+    metrics:
+      - metrics/metrics.json:
+          cache: false

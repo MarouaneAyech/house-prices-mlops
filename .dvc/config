@@ -1,5 +1,5 @@
 [core]
-    remote = dvc_storage
-['remote "dvc_storage"']
-    url = gdrive://1cRt4q_ePqDslqDW4JIzqyzaBrcD5noZt
-    gdrive_use_service_account = false
+    remote = origin
+['remote "origin"']
+    url = s3://house-predict
+    endpointurl = https://dagshub.com/api/v1/repo-buckets/s3/marouane.benhaj.ayech
