@@ -28,13 +28,6 @@ def evaluate_model(data_dir="data/processed", model_path="models/model.pkl", out
     print(f"Test RMSE: {rmse_test:.2f}")
     print(f"Test R²: {r2_test:.3f}")
 
-    
-    # with open(f"{output_dir}/metrics.txt","w") as file :
-    #     file.write(f"Train RMSE: {rmse_train:.2f}\n")
-    #     file.write(f"Train R²: {r2_train:.3f}\n")
-    #     file.write(f"Test RMSE: {rmse_test:.2f}\n")
-    #     file.write(f"Test R²: {r2_test:.3f}\n")
-
     metrics = {
         "train_rmse": rmse_train,
         "train_r2": r2_train,

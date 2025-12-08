@@ -4,6 +4,7 @@ import pickle
 import os
 
 def train_model(data_dir="data/processed", output_dir="models"):
+
     os.makedirs(output_dir, exist_ok=True)
 
     X_train = pd.read_csv(f"{data_dir}/X_train.csv")

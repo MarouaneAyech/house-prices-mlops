@@ -1,0 +1,5 @@
+
+process:
+  test_size: 0.4
+  random_state: 42
+  correlation_threshold: 0.5  # Si tu changes ça, DVC relance le process
