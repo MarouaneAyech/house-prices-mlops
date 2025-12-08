@@ -6,3 +6,5 @@ scikit-learn
 dvc
 dvc-s3
 pyyaml
+mlflow
+dagshub

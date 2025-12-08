@@ -17,9 +17,9 @@ stages:
     
     # Paramètres : Si la config scientifique change
     params:
-      - process.test_size
-      - process.random_state
-      - process.correlation_threshold
+      - data_process.test_size
+      - data_process.random_state
+      - data_process.correlation_threshold
     
     # Sorties : Le gros dossier de données (Géré par DVC Cache)
     outs:
@@ -39,7 +39,7 @@ stages:
   # ---------------------------------------------------------
   # ÉTAPE 3 : Évaluation & Visualisation
   # ---------------------------------------------------------
-  evaluate:
+  eval:
     cmd: python src/eval.py
     deps:
       - src/eval.py

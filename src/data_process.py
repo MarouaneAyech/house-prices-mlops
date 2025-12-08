@@ -7,7 +7,7 @@ def prepare_data(input_path="data/raw/data.csv", output_dir="data/processed"):
 
     # 1. Charger la config
     with open("params.yaml", "r") as f:
-        params = yaml.safe_load(f)["process"]
+        params = yaml.safe_load(f)["data_process"]
     os.makedirs(output_dir, exist_ok=True)
     
     # Keep only not nan numeric data
