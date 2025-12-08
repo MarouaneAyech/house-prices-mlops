@@ -19,38 +19,38 @@ stages:
     deps:
     - path: data/processed
       hash: md5
-      md5: 2f70a53fb3b9b74d6f0c0d31ddeeeaab.dir
-      size: 55993
+      md5: af7c6673462a853fb7790436934e36b9.dir
+      size: 24579
       nfiles: 4
     - path: src/train.py
       hash: md5
-      md5: 5b8d87fb2ee65a6c6067e2376a9c4223
-      size: 2147
+      md5: a9a6293e18e81cf73fd231fe922f0773
+      size: 869
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: 89d6d47081aae1506573fb20d8ccd3cf
-      size: 835
+      md5: 2026784bfc456571a6d9bf711904f545
+      size: 632
   eval:
     cmd: python src/eval.py
     deps:
     - path: data/processed
       hash: md5
-      md5: 2f70a53fb3b9b74d6f0c0d31ddeeeaab.dir
-      size: 55993
+      md5: af7c6673462a853fb7790436934e36b9.dir
+      size: 24579
       nfiles: 4
     - path: models/model.pkl
       hash: md5
-      md5: 89d6d47081aae1506573fb20d8ccd3cf
-      size: 835
+      md5: 2026784bfc456571a6d9bf711904f545
+      size: 632
     - path: src/eval.py
       hash: md5
-      md5: d44bcdb08fe524c346754e8e2113cbfe
-      size: 2184
+      md5: 211f4f486de344ad81f3eac6a33b0aeb
+      size: 1482
     outs:
     - path: metrics/metrics.json
       hash: md5
-      md5: d51a91cce461ff8ff98dd4c42fac978c
+      md5: 3acfcb687d7749040e5e7c59c802dd67
       size: 152
   data_process:
     cmd: python src/data_process.py
@@ -65,14 +65,14 @@ stages:
       size: 1759
     params:
       params.yaml:
-        data_process.correlation_threshold: 0.5
+        data_process.correlation_threshold: 0.6
         data_process.random_state: 42
-        data_process.test_size: 0.4
+        data_process.test_size: 0.2
     outs:
     - path: data/processed
       hash: md5
-      md5: 2f70a53fb3b9b74d6f0c0d31ddeeeaab.dir
-      size: 55993
+      md5: af7c6673462a853fb7790436934e36b9.dir
+      size: 24579
       nfiles: 4
   evaluate:
     cmd: python src/eval.py

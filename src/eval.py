@@ -4,22 +4,11 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import numpy as np
 import os
 import json
-import mlflow
-import dagshub
 import yaml
 
 def evaluate_model(data_dir="data/processed", model_path="models/model.pkl", output_dir='metrics'):
-    # 1. Charger params & Init DAGsHub
-    with open("params.yaml", "r") as f:
-        params = yaml.safe_load(f)
 
-    dagshub.init(repo_owner=params["mlflow"]["repo_owner"], 
-                 repo_name=params["mlflow"]["repo_name"], 
-                 mlflow=True)
-    
-    mlflow.set_experiment(params["mlflow"]["experiment_name"])
-
-    # 2. Chargement
+    # 1. Chargement
     os.makedirs(output_dir, exist_ok=True)
     
     X_test = pd.read_csv(f"{data_dir}/X_test.csv")
@@ -30,7 +19,7 @@ def evaluate_model(data_dir="data/processed", model_path="models/model.pkl", out
     with open(model_path, "rb") as f:
         model = pickle.load(f)
 
-    # 3. Predictions
+    # 2. Predictions
     y_train_pred = model.predict(X_train)
     rmse_train = np.sqrt(mean_squared_error(y_train, y_train_pred))
     r2_train = r2_score(y_train, y_train_pred)
@@ -43,7 +32,7 @@ def evaluate_model(data_dir="data/processed", model_path="models/model.pkl", out
     print(f"Test RMSE: {rmse_test:.2f}")
     print(f"Test R²: {r2_test:.3f}")
 
-    # 4. Sauvegarde JSON (Pour DVC/Git)
+    # 3. Sauvegarde JSON (Pour DVC/Git)
     metrics = {
         "train_rmse": rmse_train,
         "train_r2": r2_train,
@@ -51,16 +40,8 @@ def evaluate_model(data_dir="data/processed", model_path="models/model.pkl", out
         "test_r2": r2_test
     }
 
-    # Sauvegarde en JSON
     with open(f"{output_dir}/metrics.json", "w") as f:
         json.dump(metrics, f, indent=4)
-
-     # 6. LOGGING MLFLOW
-    # Astuce : On utilise start_run() ici. 
-    # Note : Cela créera une nouvelle ligne dans MLflow dédiée à l'évaluation.
-    with mlflow.start_run(run_name="Evaluation"):
-        mlflow.log_metrics(metrics)
-        print("Métriques et Plot envoyés à MLflow.")
 
 if __name__ == "__main__":
     evaluate_model()

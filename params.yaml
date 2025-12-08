@@ -1,15 +1,5 @@
 
 data_process:
-  test_size: 0.4
+  test_size: 0.2
   random_state: 42
   correlation_threshold: 0.5  # Si tu changes ça, DVC relance le process
-
-train:
-  model_type: "LinearRegression"
-  
-# Configuration MLflow
-mlflow:
-  experiment_name: "HousePrice_Prediction"
-  registered_model_name: "HousePrice_LinearRegression" # Nom du modèle dans le registre
-  repo_owner: "marouane.benhaj.ayech"  # Remplace par ton username DAGsHub exact
-  repo_name: "house-prices-mlops"           # Remplace par le nom EXACT de ton repo DAGsHub
