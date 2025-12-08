@@ -10,7 +10,6 @@ __pycache__/
 # Données , modèles et metrics
 data/
 models/
-metrics/
 
 # Notebooks checkpoints
 *.ipynb_checkpoints/
